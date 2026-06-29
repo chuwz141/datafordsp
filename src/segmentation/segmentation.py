@@ -111,6 +111,14 @@ def fit_models(vectors, k=5, random_state=42):
     gmm = GaussianMixture(n_components=k, random_state=random_state)
     gmm_labels = gmm.fit_predict(X)
     
+    # Save fitted model objects to outputs/models/ for production reload
+    try:
+        import joblib
+        joblib.dump(kmeans, 'outputs/models/kmeans_model.joblib')
+        joblib.dump(gmm, 'outputs/models/gmm_model.joblib')
+    except Exception:
+        pass
+    
     # BIRCH with smaller threshold
     try:
         birch = Birch(n_clusters=k, threshold=0.01)
