@@ -1,0 +1,42 @@
+============================================================
+PHASE 2: SENTIMENT ANALYSIS & SA-RFM
+============================================================
+  PhoBERT not available (No module named 'torch'), falling back to rating-based sentiment
+
+  Using rating-based sentiment (MODE 1)
+
+--- Rating-Based Sentiment ---
+  Processed 100,000 reviews...
+  Processed 200,000 reviews...
+  Processed 300,000 reviews...
+  Total reviews processed: 369,099
+  Unique users: 304,708
+
+--- Building SA-RFM Table ---
+  RFM table loaded: 304,708 users
+  Sentiment scores computed: 304,708 users
+
+  SA-RFM Table: 304,708 users x 9 columns
+
+  Sentiment statistics:
+    mean=0.9790
+    std=0.1101
+    min=0.0000
+    25%=1.0000
+    50%=1.0000
+    75%=1.0000
+    max=1.0000
+
+  Sentiment distribution:
+    Very Negative (0.0-0.2): 1,969
+    Negative (0.2-0.4): 1,142
+    Neutral (0.4-0.6): 2,841
+    Positive (0.6-0.8): 7,744
+    Very Positive (0.8-1.0): 291,012
+
+  Saved: sarfm_table.csv (21.6 MB)
+  Saved: sarfm_vectors.csv (16.2 MB)
+
+============================================================
+PHASE 2 COMPLETE
+============================================================
