@@ -937,9 +937,9 @@
                 <div class="card card-accent anim anim-d2">
                     <h3>Mô hình phân tích cảm xúc</h3>
                     <ul class="mt-8">
-                        <li><strong>Mode 1 (Nâng cao):</strong> PhoBERT (<code>vinai/phobert-base</code>) — mô hình NLP tiếng Việt, yêu cầu GPU</li>
-                        <li><strong>Mode 2 (Fallback):</strong> Ánh xạ tuyến tính rating 1→5 về thang [0.0, 1.0]</li>
-                        <li>Hệ thống tự động phát hiện môi trường và chọn mode phù hợp</li>
+                        <li><strong>PhoBERT Sentiment:</strong> wonrax/phobert-base-vietnamese-sentiment chạy trên Colab GPU (CUDA)</li>
+                        <li><strong>Hiệu suất:</strong> Xử lý thành công 369,099 reviews trong 28.0 phút</li>
+                        <li><strong>Chế độ dự phòng:</strong> Ánh xạ tuyến tính rating 1→5 về thang [0.0, 1.0] khi không có GPU</li>
                     </ul>
                 </div>
                 <div class="card card-green mt-16 anim anim-d3">
@@ -956,13 +956,13 @@
                     <h3>Phân bố cảm xúc (304,708 users)</h3>
                     <table class="mt-8">
                         <tr><th>Mức độ</th><th>Khoảng</th><th>Số users</th><th>Tỷ lệ</th></tr>
-                        <tr><td>😡 Very Negative</td><td>0.0 — 0.2</td><td>1,969</td><td>0.6%</td></tr>
-                        <tr><td>😕 Negative</td><td>0.2 — 0.4</td><td>1,142</td><td>0.4%</td></tr>
-                        <tr><td>😐 Neutral</td><td>0.4 — 0.6</td><td>2,841</td><td>0.9%</td></tr>
-                        <tr><td>🙂 Positive</td><td>0.6 — 0.8</td><td>7,744</td><td>2.5%</td></tr>
-                        <tr><td>😊 Very Positive</td><td>0.8 — 1.0</td><td><strong>291,012</strong></td><td><strong>95.5%</strong></td></tr>
+                        <tr><td>😡 Very Negative</td><td>0.0 — 0.2</td><td>14,951</td><td>4.9%</td></tr>
+                        <tr><td>😕 Negative</td><td>0.2 — 0.4</td><td>4,489</td><td>1.5%</td></tr>
+                        <tr><td>😐 Neutral</td><td>0.4 — 0.6</td><td>234,598</td><td>77.0%</td></tr>
+                        <tr><td>🙂 Positive</td><td>0.6 — 0.8</td><td>20,153</td><td>6.6%</td></tr>
+                        <tr><td>😊 Very Positive</td><td>0.8 — 1.0</td><td><strong>30,517</strong></td><td><strong>10.0%</strong></td></tr>
                     </table>
-                    <p class="text-xs mt-8">Mean sentiment: 0.979 · Std: 0.110</p>
+                    <p class="text-xs mt-8">Mean sentiment: 0.534 · Std: 0.174</p>
                 </div>
                 <div class="highlight-box mt-16 anim anim-d4">
                     <strong>Đầu ra:</strong> Vectơ 4 chiều SA-RFM (RFMS) cho mỗi user = [R<sub>norm</sub>, F<sub>norm</sub>, M<sub>norm</sub>, S<sub>norm</sub>]
@@ -1231,14 +1231,14 @@
                     <h3>Kết quả đánh giá số cụm</h3>
                     <table class="mt-8">
                         <tr><th>K</th><th>WCSS</th><th>Silhouette</th><th>DBI</th></tr>
-                        <tr><td>2</td><td>6,339</td><td>0.478</td><td>0.877</td></tr>
-                        <tr><td>3</td><td>3,512</td><td><strong>0.514</strong></td><td><strong>0.665</strong></td></tr>
-                        <tr><td>4</td><td>2,594</td><td>0.457</td><td>0.699</td></tr>
-                        <tr style="background:#DBEAFE;"><td><strong>5</strong></td><td><strong>2,075</strong></td><td>0.480</td><td>0.670</td></tr>
-                        <tr><td>6</td><td>1,744</td><td>0.393</td><td>0.760</td></tr>
-                        <tr><td>7</td><td>1,472</td><td>0.443</td><td>0.767</td></tr>
+                        <tr><td>2</td><td>9,685</td><td>0.531</td><td>0.745</td></tr>
+                        <tr><td>3</td><td>6,542</td><td><strong>0.581</strong></td><td><strong>0.655</strong></td></tr>
+                        <tr><td>4</td><td>3,929</td><td>0.510</td><td>0.655</td></tr>
+                        <tr style="background:#DBEAFE;"><td><strong>5</strong></td><td><strong>3,115</strong></td><td>0.457</td><td>0.675</td></tr>
+                        <tr><td>6</td><td>2,680</td><td>0.449</td><td>0.787</td></tr>
+                        <tr><td>7</td><td>2,371</td><td>0.369</td><td>0.865</td></tr>
                     </table>
-                    <p class="text-xs mt-8">K=5: Silhouette cao (0.48), DBI thấp (0.67), WCSS ở điểm khuỷu tay, và đủ 5 phân khúc kinh doanh rõ rệt</p>
+                    <p class="text-xs mt-8">K=5: Tỷ lệ phân tách tốt (Silhouette=0.457, DBI=0.675) và độ bao phủ phân khúc kinh doanh đầy đủ nhất</p>
                 </div>
             </div>
         </div>
@@ -1251,58 +1251,58 @@
         <p class="subtitle anim anim-d2">Gán nhãn kinh doanh tự động dựa trên vị trí centroid của từng cụm:</p>
         <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:24px;" class="anim anim-d3">
             <div class="cluster-card">
-                <div class="cluster-emoji">🌱</div>
-                <div class="cluster-name" style="color:#059669;">Promising Newcomers<br>(Group 0)</div>
-                <div class="cluster-desc">Khách mới, mua gần đây, cảm xúc rất tích cực</div>
+                <div class="cluster-emoji">💤</div>
+                <div class="cluster-name" style="color:#D97706;">General/Hibernating<br>(Group 0)</div>
+                <div class="cluster-desc">Khách trung tính, mua xa hơn, cảm xúc trung bình</div>
                 <div class="cluster-metrics">
-                    <div class="cluster-metric">R<br><strong>0.78</strong></div>
-                    <div class="cluster-metric">F<br><strong>0.01</strong></div>
-                    <div class="cluster-metric">M<br><strong>0.04</strong></div>
-                    <div class="cluster-metric">S<br><strong>1.00</strong></div>
+                    <div class="cluster-metric">R<br><strong>0.51</strong></div>
+                    <div class="cluster-metric">F<br><strong>0.00</strong></div>
+                    <div class="cluster-metric">M<br><strong>0.05</strong></div>
+                    <div class="cluster-metric">S<br><strong>0.52</strong></div>
                 </div>
             </div>
             <div class="cluster-card">
-                <div class="cluster-emoji">🌱</div>
-                <div class="cluster-name" style="color:#059669;">Promising Newcomers<br>(Group 1)</div>
-                <div class="cluster-desc">Khách rất mới, sentiment cao, tiềm năng phát triển</div>
+                <div class="cluster-emoji">💤</div>
+                <div class="cluster-name" style="color:#D97706;">General/Hibernating<br>(Group 1)</div>
+                <div class="cluster-desc">Khách trung tính mua rất gần, mua nhiều hơn chút</div>
                 <div class="cluster-metrics">
                     <div class="cluster-metric">R<br><strong>0.93</strong></div>
                     <div class="cluster-metric">F<br><strong>0.02</strong></div>
                     <div class="cluster-metric">M<br><strong>0.05</strong></div>
-                    <div class="cluster-metric">S<br><strong>1.00</strong></div>
+                    <div class="cluster-metric">S<br><strong>0.51</strong></div>
+                </div>
+            </div>
+            <div class="cluster-card">
+                <div class="cluster-emoji">🌱</div>
+                <div class="cluster-name" style="color:#059669;">Promising Newcomers<br>(Satisfied)</div>
+                <div class="cluster-desc">Khách mới mua gần đây, cảm xúc khá hài lòng</div>
+                <div class="cluster-metrics">
+                    <div class="cluster-metric">R<br><strong>0.83</strong></div>
+                    <div class="cluster-metric">F<br><strong>0.01</strong></div>
+                    <div class="cluster-metric">M<br><strong>0.04</strong></div>
+                    <div class="cluster-metric">S<br><strong>0.88</strong></div>
                 </div>
             </div>
             <div class="cluster-card">
                 <div class="cluster-emoji">🗯️</div>
                 <div class="cluster-name" style="color:#DC2626;">Negative<br>Detractors</div>
-                <div class="cluster-desc">Khách có cảm xúc tiêu cực, cần chăm sóc đặc biệt</div>
-                <div class="cluster-metrics">
-                    <div class="cluster-metric">R<br><strong>0.87</strong></div>
-                    <div class="cluster-metric">F<br><strong>0.00</strong></div>
-                    <div class="cluster-metric">M<br><strong>0.04</strong></div>
-                    <div class="cluster-metric">S<br><strong style="color:#DC2626;">0.09</strong></div>
-                </div>
-            </div>
-            <div class="cluster-card">
-                <div class="cluster-emoji">💤</div>
-                <div class="cluster-name" style="color:#D97706;">General /<br>Hibernating</div>
-                <div class="cluster-desc">Khách trung tính, cảm xúc trung bình, ít hoạt động</div>
+                <div class="cluster-desc">Khách mua gần đây nhưng cảm xúc cực kỳ tiêu cực</div>
                 <div class="cluster-metrics">
                     <div class="cluster-metric">R<br><strong>0.88</strong></div>
                     <div class="cluster-metric">F<br><strong>0.01</strong></div>
                     <div class="cluster-metric">M<br><strong>0.04</strong></div>
-                    <div class="cluster-metric">S<br><strong>0.68</strong></div>
+                    <div class="cluster-metric">S<br><strong style="color:#DC2626;">0.06</strong></div>
                 </div>
             </div>
             <div class="cluster-card">
-                <div class="cluster-emoji">✨</div>
-                <div class="cluster-name" style="color:#7C3AED;">Positive<br>Enthusiasts</div>
-                <div class="cluster-desc">Khách trung thành, sentiment cao, cũ hơn nhưng hài lòng</div>
+                <div class="cluster-emoji">💤</div>
+                <div class="cluster-name" style="color:#D97706;">General/Hibernating<br>(Group 4)</div>
+                <div class="cluster-desc">Khách trung tính mua gần, cảm xúc trung bình</div>
                 <div class="cluster-metrics">
-                    <div class="cluster-metric">R<br><strong>0.54</strong></div>
-                    <div class="cluster-metric">F<br><strong>0.00</strong></div>
+                    <div class="cluster-metric">R<br><strong>0.77</strong></div>
+                    <div class="cluster-metric">F<br><strong>0.01</strong></div>
                     <div class="cluster-metric">M<br><strong>0.04</strong></div>
-                    <div class="cluster-metric">S<br><strong>0.99</strong></div>
+                    <div class="cluster-metric">S<br><strong>0.51</strong></div>
                 </div>
             </div>
         </div>
@@ -1331,11 +1331,11 @@
                     <h3>Luật theo từng phân khúc</h3>
                     <table class="mt-8">
                         <tr><th>Phân khúc</th><th>Số luật</th></tr>
-                        <tr><td>💤 General/Hibernating</td><td><strong>1,699</strong></td></tr>
-                        <tr><td>✨ Positive Enthusiasts</td><td><strong>1,014</strong></td></tr>
-                        <tr><td>🌱 Newcomers (Group 0)</td><td>284</td></tr>
-                        <tr><td>🌱 Newcomers (Group 1)</td><td>263</td></tr>
-                        <tr><td>🗯️ Negative Detractors</td><td>220</td></tr>
+                        <tr><td>🗯️ Negative Detractors</td><td><strong>2,223</strong></td></tr>
+                        <tr><td>💤 General/Hibernating (Group 0)</td><td><strong>840</strong></td></tr>
+                        <tr><td>💤 General/Hibernating (Group 4)</td><td>374</td></tr>
+                        <tr><td>🌱 Promising Newcomers (Satisfied)</td><td>314</td></tr>
+                        <tr><td>💤 General/Hibernating (Group 1)</td><td>275</td></tr>
                     </table>
                 </div>
             </div>
@@ -1348,25 +1348,25 @@
                             <td>Gel BHA Compliment</td>
                             <td>SRM White Seed The Face Shop</td>
                             <td style="color:var(--accent);font-weight:700;">1340.1</td>
-                            <td>-0.18</td>
+                            <td>-0.02</td>
                         </tr>
                         <tr>
                             <td>SRM Cao Sâm Mật Nhân</td>
                             <td>SRM Dr Cell Foaming</td>
                             <td style="color:var(--accent);font-weight:700;">747.7</td>
-                            <td>-0.02</td>
+                            <td>-0.13</td>
                         </tr>
                         <tr>
                             <td>SRM Trà Xanh 3W Clinic</td>
                             <td>SRM Gạo 3W Clinic</td>
                             <td style="color:var(--green);font-weight:700;">466.0</td>
-                            <td style="color:var(--green);font-weight:700;">0.36</td>
+                            <td style="color:var(--green);font-weight:700;">0.47</td>
                         </tr>
                         <tr>
                             <td>SRM Whoo Hồng</td>
                             <td>SRM Whoo Vàng</td>
                             <td style="color:var(--green);font-weight:700;">275.6</td>
-                            <td style="color:var(--green);font-weight:700;">0.18</td>
+                            <td style="color:var(--green);font-weight:700;">0.16</td>
                         </tr>
                     </table>
                     <p class="text-xs mt-8">Luật cùng thương hiệu (same_brand=True) có Cosine Similarity cao hơn → ngữ nghĩa phù hợp</p>
@@ -1383,11 +1383,12 @@
         <div class="two-col mt-24">
             <div>
                 <div class="card card-accent anim anim-d2">
-                    <h3>👤 User #8296 — ✨ Positive Enthusiasts</h3>
-                    <p class="text-sm mt-8 fw-600">Lịch sử mua (2 sản phẩm):</p>
+                    <h3>👤 User #40 — 🌱 Promising Newcomers (Satisfied)</h3>
+                    <p class="text-sm mt-8 fw-600">Lịch sử mua (3 sản phẩm):</p>
                     <ul class="text-sm mt-8">
-                        <li>SRM Senana Lấy Sạch Bụi Bẩn</li>
-                        <li>SRM Acnes Vitamin Cleanser 25g</li>
+                        <li>Sữa rửa mặt Simple cho da nhạy cảm</li>
+                        <li>Sữa rửa mặt Simple kiềm dầu ngừa mụn</li>
+                        <li>Combo Simple Tẩy trang + SRM + Toner</li>
                     </ul>
                 </div>
                 <div class="card mt-16 anim anim-d3">
@@ -1405,37 +1406,37 @@
                     <tr><th>#</th><th>Sản phẩm</th><th>Score</th><th>Nguồn</th></tr>
                     <tr>
                         <td>1</td>
-                        <td>Kem Rửa Mặt Acnes Vitamin Cleanser 25g</td>
-                        <td class="fw-700 text-accent">0.440</td>
+                        <td>Combo Simple Tẩy trang + SRM + Toner ngừa mụn</td>
+                        <td class="fw-700 text-accent">0.468</td>
                         <td><span class="tag tag-blue">MBA</span></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>SRM Acnes Ngăn Ngừa Mụn 100g</td>
-                        <td class="fw-700 text-green">0.331</td>
-                        <td><span class="tag tag-green">Sim 63%</span></td>
+                        <td>SRM Simple ngừa mụn da nhạy cảm</td>
+                        <td class="fw-700 text-green">0.408</td>
+                        <td><span class="tag tag-green">Sim 52%</span></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>SRM Acnes 25g/50g</td>
-                        <td>0.313</td>
-                        <td><span class="tag tag-green">Sim 58%</span></td>
+                        <td>SRM Simple ngừa mụn da nhạy cảm (bản cũ)</td>
+                        <td>0.398</td>
+                        <td><span class="tag tag-green">Sim 45%</span></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Gel BHA Compliment 200ml</td>
-                        <td>0.308</td>
-                        <td><span class="tag tag-green">Sim 38%</span></td>
+                        <td>SRM Simple sạch thoáng & không xà phòng</td>
+                        <td>0.371</td>
+                        <td><span class="tag tag-green">Sim 73%</span></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>SRM Acnes Baby Mud 25g</td>
-                        <td>0.295</td>
-                        <td><span class="tag tag-green">Sim 54%</span></td>
+                        <td>SRM Simple dưỡng ẩm da mịn màng</td>
+                        <td>0.335</td>
+                        <td><span class="tag tag-blue">MBA</span></td>
                     </tr>
                 </table>
                 <div class="highlight-box mt-16">
-                    <strong>💡 Explanation mẫu:</strong> "Bought by other users in your segment who also bought 'SRM Acnes Vitamin Cleanser' (also shares similar skin type/features)"
+                    <strong>💡 Explanation mẫu:</strong> "Bought by other users in your segment who also bought 'SRM Simple kiềm dầu ngừa mụn' (also shares similar skin type/features)"
                 </div>
             </div>
         </div>
@@ -1453,30 +1454,30 @@
                         <tr><th>Thuật toán</th><th>DBI ↓</th><th>Silhouette ↑</th><th>Đánh giá</th></tr>
                         <tr style="background:#DBEAFE;">
                             <td><strong>K-Means++</strong></td>
-                            <td class="fw-700 text-accent">0.670</td>
-                            <td class="fw-700 text-accent">0.480</td>
+                            <td class="fw-700 text-accent">0.675</td>
+                            <td class="fw-700 text-accent">0.456</td>
                             <td><span class="tag tag-blue">🏆 Tốt nhất</span></td>
                         </tr>
                         <tr>
                             <td><strong>BIRCH</strong></td>
-                            <td>0.674</td>
-                            <td>0.436</td>
-                            <td><span class="tag tag-green">Tương đương</span></td>
+                            <td>1.024</td>
+                            <td>0.392</td>
+                            <td><span class="tag tag-green">Khá tốt</span></td>
                         </tr>
                         <tr>
                             <td><strong>GMM</strong></td>
-                            <td>1.867</td>
-                            <td>0.180</td>
+                            <td>2.950</td>
+                            <td>0.101</td>
                             <td><span class="tag tag-red">Kém nhất</span></td>
                         </tr>
                     </table>
                     <p class="text-sm mt-16">
-                        <strong>Kết luận:</strong> K-Means++ cho kết quả tốt nhất với DBI thấp nhất (0.670) và Silhouette cao nhất (0.480). BIRCH cho kết quả gần tương đương. GMM kém do dữ liệu không tuân theo phân phối Gaussian.
+                        <strong>Kết luận:</strong> K-Means++ đạt hiệu năng tốt nhất với DBI thấp nhất (0.675) và Silhouette Coefficient cao nhất (0.456). BIRCH có độ chính xác thấp hơn trên chiều Sentiment. GMM kém do tính phi tuyến tính mạnh của phân phối dữ liệu.
                     </p>
                 </div>
             </div>
             <div class="img-container img-large anim anim-d3">
-                <img src="outputs_local_fallback/figures/segmentation_evaluation.png" alt="Biểu đồ đánh giá K-Means: Elbow, Silhouette Score, Davies-Bouldin Index">
+                <img src="outputs/figures/segmentation_evaluation.png" alt="Biểu đồ đánh giá K-Means: Elbow, Silhouette Score, Davies-Bouldin Index">
                 <div class="img-caption">Elbow (WCSS) · Silhouette Score · Davies-Bouldin Index — K=2 đến K=7</div>
             </div>
         </div>
@@ -1488,11 +1489,11 @@
         <h2 class="anim anim-d1">Trực Quan Hóa Phân Cụm Khách Hàng</h2>
         <div class="grid-2 mt-24">
             <div class="img-container anim anim-d2">
-                <img src="outputs_local_fallback/figures/segment_scatter_2d.png" alt="PCA 2D Scatter - Customer Segments">
+                <img src="outputs/figures/segment_scatter_2d.png" alt="PCA 2D Scatter - Customer Segments">
                 <div class="img-caption">Phân bố cụm trong không gian PCA 2D (15K mẫu)</div>
             </div>
             <div class="img-container anim anim-d3">
-                <img src="outputs_local_fallback/figures/segment_centroids_radar.png" alt="Parallel Coordinates - Segment Centroids">
+                <img src="outputs/figures/segment_centroids_radar.png" alt="Parallel Coordinates - Segment Centroids">
                 <div class="img-caption">So sánh Centroid của 5 cụm trên 4 chiều SA-RFM</div>
             </div>
         </div>
@@ -1508,19 +1509,19 @@
         <p class="subtitle anim anim-d2">Đánh giá trên <strong>200 users ngẫu nhiên</strong>, mỗi user nhận Top-5 gợi ý (tổng 1,000 gợi ý):</p>
         <div class="grid-4 mt-32 anim anim-d3">
             <div class="card card-stat" style="border-top:3px solid #2563EB;">
-                <div class="stat-value" style="font-size:28px;">23.84%</div>
-                <div class="stat-label">Catalog Coverage<br><span class="text-xs">535 / 2,244 sản phẩm</span></div>
+                <div class="stat-value" style="font-size:28px;">24.38%</div>
+                <div class="stat-label">Catalog Coverage<br><span class="text-xs">547 / 2,244 sản phẩm</span></div>
             </div>
             <div class="card card-stat" style="border-top:3px solid #059669;">
-                <div class="stat-value" style="font-size:28px;color:#059669;">0.674</div>
+                <div class="stat-value" style="font-size:28px;color:#059669;">0.496</div>
                 <div class="stat-label">Diversity Score<br><span class="text-xs">1 − avg cosine sim</span></div>
             </div>
             <div class="card card-stat" style="border-top:3px solid #7C3AED;">
-                <div class="stat-value" style="font-size:28px;color:#7C3AED;">89.5%</div>
+                <div class="stat-value" style="font-size:28px;color:#7C3AED;">88.0%</div>
                 <div class="stat-label">Content Hit Rate<br><span class="text-xs">Gợi ý từ similarity</span></div>
             </div>
             <div class="card card-stat" style="border-top:3px solid #D97706;">
-                <div class="stat-value" style="font-size:28px;color:#D97706;">9.5%</div>
+                <div class="stat-value" style="font-size:28px;color:#D97706;">12.0%</div>
                 <div class="stat-label">MBA Hit Rate<br><span class="text-xs">Gợi ý từ luật MBA</span></div>
             </div>
         </div>
@@ -1528,18 +1529,18 @@
             <div class="card card-accent">
                 <h3>Phân tích kết quả</h3>
                 <ul class="mt-8 text-sm">
-                    <li><strong>Catalog Coverage 23.84%</strong>: Hệ thống gợi ý được gần 1/4 catalog — hợp lý cho dữ liệu long-tail</li>
-                    <li><strong>Diversity 0.674</strong>: Danh sách gợi ý đủ đa dạng, không bị trùng lặp quá nhiều</li>
-                    <li><strong>Content Similarity chiếm ưu thế (89.5%)</strong>: Nguồn gợi ý chính đến từ sự tương đồng nội dung sản phẩm</li>
+                    <li><strong>Catalog Coverage 24.38%</strong>: Tăng nhẹ so với trước, tiếp cận 1/4 giỏ hàng sản phẩm</li>
+                    <li><strong>Diversity 0.496</strong>: Mức đa dạng tương đương 0.504 độ tương đồng, do nhúng đa phương thức tập trung các sản phẩm có cùng đặc tính trị mụn/dưỡng ẩm sâu</li>
+                    <li><strong>Content Similarity (88.0%)</strong>: Vẫn đóng vai trò xương sống cho việc mở rộng danh sách gợi ý</li>
                 </ul>
             </div>
             <div class="card card-orange">
-                <h3>Giải thích MBA Hit Rate thấp</h3>
+                <h3>Nhận xét về MBA Hit Rate (12.0%)</h3>
                 <ul class="mt-8 text-sm">
-                    <li>Ngưỡng Support/Lift cao → ít luật được sinh ra</li>
-                    <li>Dữ liệu long-tail: đa số users chỉ mua 1-2 sản phẩm</li>
-                    <li>Content similarity bù đắp tốt khi MBA rules thiếu</li>
-                    <li>Hybrid approach đảm bảo luôn có đủ gợi ý cho mọi user</li>
+                    <li>Được cải thiện từ 9.5% lên 12.0% nhờ phân cụm SA-RFM chuẩn xác hơn</li>
+                    <li>Tận dụng tốt luật kết hợp riêng cho nhóm Detractors và Newcomers</li>
+                    <li>Các gợi ý có tính chất "đi kèm" giúp gia tăng giá trị đơn hàng thực tế</li>
+                    <li>Cơ chế Hybrid dung hòa hoàn hảo giữa tính gợi ý chéo (MBA) và tính tương tự (Content)</li>
                 </ul>
             </div>
         </div>
@@ -1551,19 +1552,19 @@
         <h2 class="anim anim-d1">Dashboard Tổng Hợp</h2>
         <div class="grid-2 mt-16">
             <div class="img-container anim anim-d2">
-                <img src="outputs_local_fallback/figures/dashboard_segment_sizes.png" alt="Phân bố kích thước 5 cụm khách hàng">
+                <img src="outputs/figures/dashboard_segment_sizes.png" alt="Phân bố kích thước 5 cụm khách hàng">
                 <div class="img-caption">Phân bố tỷ lệ 5 phân khúc khách hàng</div>
             </div>
             <div class="img-container anim anim-d2">
-                <img src="outputs_local_fallback/figures/dashboard_sentiment_dist.png" alt="Phân bố điểm cảm xúc khách hàng">
+                <img src="outputs/figures/dashboard_sentiment_dist.png" alt="Phân bố điểm cảm xúc khách hàng">
                 <div class="img-caption">Phân bố điểm cảm xúc (Sentiment)</div>
             </div>
             <div class="img-container anim anim-d3">
-                <img src="outputs_local_fallback/figures/dashboard_mba_rules_scatter.png" alt="Scatter plot luật kết hợp giỏ hàng">
+                <img src="outputs/figures/dashboard_mba_rules_scatter.png" alt="Scatter plot luật kết hợp giỏ hàng">
                 <div class="img-caption">Phân phối luật MBA — Lift vs Support (màu: Cosine Sim)</div>
             </div>
             <div class="img-container anim anim-d3">
-                <img src="outputs_local_fallback/figures/dashboard_recommender_hits.png" alt="Nguồn đóng góp hệ gợi ý">
+                <img src="outputs/figures/dashboard_recommender_hits.png" alt="Nguồn đóng góp hệ gợi ý">
                 <div class="img-caption">Tỷ trọng đóng góp nguồn gợi ý (MBA vs Content vs Pop)</div>
             </div>
         </div>

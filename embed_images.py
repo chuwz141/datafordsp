@@ -8,14 +8,14 @@ import os
 import re
 
 HTML_FILE = 'presentation.html'
-IMG_DIR = 'outputs_local_fallback/figures'
+IMG_DIR = 'outputs/figures'
 
 # Read the HTML file
 with open(HTML_FILE, 'r', encoding='utf-8') as f:
     html = f.read()
 
-# Find all img src references to outputs_local_fallback/figures/
-pattern = r'src="outputs_local_fallback/figures/([^"]+)"'
+# Find all img src references to outputs/figures/
+pattern = r'src="outputs/figures/([^"]+)"'
 matches = re.findall(pattern, html)
 
 print(f"Found {len(matches)} image references to embed:")
@@ -29,7 +29,7 @@ for filename in set(matches):
         with open(filepath, 'rb') as img_file:
             b64 = base64.b64encode(img_file.read()).decode('ascii')
         
-        old_src = f'src="outputs_local_fallback/figures/{filename}"'
+        old_src = f'src="outputs/figures/{filename}"'
         new_src = f'src="data:image/png;base64,{b64}"'
         html = html.replace(old_src, new_src)
         print(f"  [OK] Embedded: {filename} ({len(b64)} chars)")
