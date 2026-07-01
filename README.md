@@ -223,11 +223,11 @@ Dưới đây là chi tiết mã nguồn triển khai của từng phân hệ ch
 * **Kịch bản thực thi**: [run_phase6.py](file:///c:/Users/david/OneDrive/Documents/DSP/run_phase6.py)
 * **Thuật toán & Xử lý**:
   * Xây dựng giải thuật gợi ý lai chấm điểm ứng viên cho từng khách hàng dựa trên 3 tiêu chí:
-    $$\text{Score} = w_{\text{mba}} \cdot \text{MBA\_Score} + w_{\text{sim}} \cdot \text{Cosine\_Similarity} + w_{\text{pop}} \cdot \text{Popularity\_Score}$$
+    $$\text{Score} = w_{\text{mba}} \cdot \text{Score}_{\text{MBA}} + w_{\text{sim}} \cdot \text{Similarity}_{\text{Cosine}} + w_{\text{pop}} \cdot \text{Score}_{\text{Popularity}}$$
     Trong đó:
-    * $\text{MBA\_Score}$: Điểm quy đổi từ luật mua kèm giỏ hàng (ưu tiên luật riêng của phân cụm khách hàng).
-    * $\text{Cosine\_Similarity}$: Độ tương đồng nội dung đa phương thức của sản phẩm ứng viên với lịch sử mua sắm của người dùng.
-    * $\text{Popularity\_Score}$: Điểm độ phổ biến dựa trên lượt bán và xếp hạng sao trung bình của sản phẩm trên sàn.
+    * $\text{Score}_{\text{MBA}}$: Điểm quy đổi từ luật mua kèm giỏ hàng (ưu tiên luật riêng của phân cụm khách hàng).
+    * $\text{Similarity}_{\text{Cosine}}$: Độ tương đồng nội dung đa phương thức của sản phẩm ứng viên với lịch sử mua sắm của người dùng.
+    * $\text{Score}_{\text{Popularity}}$: Điểm độ phổ biến dựa trên lượt bán và xếp hạng sao trung bình của sản phẩm trên sàn.
   * Tự động loại bỏ các sản phẩm đã mua để tránh gợi ý lặp trùng lặp.
   * Tự động sinh câu thuyết minh lý giải lý do gợi ý phù hợp với hành vi mua kèm của cụm hoặc sự tương đồng về thành phần/công dụng.
 
